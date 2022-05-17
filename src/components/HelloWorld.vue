@@ -7,13 +7,15 @@
       <table class="table-fixed w-full text-center">
         <thead>
           <tr>
-            <th class="bg-slate-400 py-5">
+            <th class="bg-slate-400 py-5 px-3">
               Zusammenfassung der aktuellen Corona-Inzidenz-Zahlen
             </th>
 
-            <th class="bg-slate-400 py-5">Vollständig geimpfte Personen</th>
+            <th class="bg-slate-400 py-5 px-3">
+              Vollständig geimpfte Personen
+            </th>
 
-            <th class="bg-slate-400 py-5">Zum teil geimpfte Personen</th>
+            <th class="bg-slate-400 py-5 px-3">Zum teil geimpfte Personen</th>
           </tr>
         </thead>
         <tbody>
