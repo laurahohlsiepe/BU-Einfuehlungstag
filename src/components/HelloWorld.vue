@@ -11,13 +11,18 @@
               Zusammenfassung der aktuellen Corona-Inzidenz-Zahlen
             </th>
 
-            <th class="bg-slate-400 py-5">Liste der letzten Fallzahlen</th>
+            <th class="bg-slate-400 py-5">Vollständig geimpfte Personen</th>
+
+            <th class="bg-slate-400 py-5">Zum teil geimpfte Personen</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td class="py-8 text-lg">{{ cases.confirmed }}</td>
             <td class="py-8 text-lg">{{ vaccines.people_vaccinated }}</td>
+            <td class="py-8 text-lg">
+              {{ vaccines.people_partially_vaccinated }}
+            </td>
           </tr>
         </tbody>
       </table>
@@ -63,6 +68,17 @@ export default {
         });
     },
 
+    loadPartVaccines() {
+      fetch("https://covid-api.mmediagroup.fr/v1/vaccines")
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          this.vaccines = data.Germany.All;
+          console.log(data.Germany.All);
+        });
+    },
+
     loadCountry() {
       fetch("https://covid-api.mmediagroup.fr/v1/cases")
         .then((response) => {
@@ -80,7 +96,6 @@ export default {
         })
         .then((data) => {
           this.updated = data.Germany.Unknown.updated;
-          console.log(data.Germany.Unknown.updated);
         });
     },
   },
@@ -89,6 +104,7 @@ export default {
     this.loadVaccines();
     this.loadDate();
     this.loadCountry();
+    this.loadPartVaccines();
   },
 };
 </script>
