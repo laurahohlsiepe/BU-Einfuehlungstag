@@ -1,33 +1,76 @@
 <template>
   <div class="hello box-border mx-10 font-sans">
     <h1 class="text-4xl font-bold text-center m-7">Corona-Dashboard</h1>
-    <p class="text-center m-5">{{ cases.country }} am {{ updated }}</p>
 
-    <div class="border-2">
-      <table class="table-fixed w-full text-center">
-        <thead>
-          <tr>
-            <th class="bg-slate-400 py-5 px-3">
-              Zusammenfassung der aktuellen Corona-Inzidenz-Zahlen
-            </th>
+    <div class="flex flex-col items-center m-4">
+      <h2 class="text-center">Dein Benutzer</h2>
+      <p class="text-center">Anzeige voller Name</p>
+      <p class="text-center">Anzeige Email-Adresse</p>
+      <p class="text-center">Anzeige volle Adresse</p>
+      <input
+        class="shadow appearance-none border border-gray-300 rounded-lg focus:ring-blue-500/50 p-1.5 w-1/4 my-1.5"
+        type="text"
+        placeholder="Vorname"
+      />
+      <input
+        class="shadow appearance-none border border-gray-300 rounded-lg focus:ring-blue-500/50 p-1.5 w-1/4 my-1.5"
+        type="text"
+        placeholder="Nachname"
+      />
+      <input
+        class="shadow appearance-none border border-gray-300 rounded-lg focus:ring-blue-500/50 p-1.5 w-1/4 my-1.5"
+        type="text"
+        placeholder="Straße"
+      />
+      <input
+        class="shadow appearance-none border border-gray-300 rounded-lg focus:ring-blue-500/50 p-1.5 w-1/4 my-1.5"
+        type="text"
+        placeholder="PLZ"
+      />
+      <input
+        class="shadow appearance-none border border-gray-300 rounded-lg focus:ring-blue-500/50 p-1.5 w-1/4 my-1.5"
+        type="text"
+        placeholder="Stadt"
+      />
+      <input
+        class="shadow appearance-none border border-gray-300 rounded-lg focus:ring-blue-500/50 p-1.5 w-1/4 my-1.5"
+        type="text"
+        placeholder="E-Mail-Adresse"
+      />
+      <div class="flex">
+        <button class="bg-red-300 p-2 m-1">Löschen</button>
+        <button class="bg-green-300 p-2 m-1">Speichern</button>
+      </div>
+    </div>
+    <div class="flex flex-col">
+      <p class="text-center m-5">{{ cases.country }} am {{ updated }}</p>
 
-            <th class="bg-slate-400 py-5 px-3">
-              Vollständig geimpfte Personen
-            </th>
+      <div class="border-2 m-12">
+        <table class="table-fixed w-full text-center">
+          <thead>
+            <tr>
+              <th class="bg-slate-400 py-5 px-3">
+                Zusammenfassung der aktuellen Corona-Inzidenz-Zahlen
+              </th>
 
-            <th class="bg-slate-400 py-5 px-3">Zum teil geimpfte Personen</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="py-8 text-lg">{{ cases.confirmed }}</td>
-            <td class="py-8 text-lg">{{ vaccines.people_vaccinated }}</td>
-            <td class="py-8 text-lg">
-              {{ vaccines.people_partially_vaccinated }}
-            </td>
-          </tr>
-        </tbody>
-      </table>
+              <th class="bg-slate-400 py-5 px-3">
+                Vollständig geimpfte Personen
+              </th>
+
+              <th class="bg-slate-400 py-5 px-3">Zum teil geimpfte Personen</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="py-8 text-lg">{{ cases.confirmed }}</td>
+              <td class="py-8 text-lg">{{ vaccines.people_vaccinated }}</td>
+              <td class="py-8 text-lg">
+                {{ vaccines.people_partially_vaccinated }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </template>
