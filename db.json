@@ -2,47 +2,21 @@
   "items": [
     {
       "id": 0,
-      "vorname": "Laura",
-      "nachname": "Ha",
-      "straße": "Hochstraße 100",
-      "PLZ": "44229",
-      "stadt": "Dortmund",
-      "email": "laurah@gmail.com"
-    },
-    {
-      "vorname": "laura",
-      "nachname": "ha",
-      "straße": "galoppstraße99",
-      "PLZ": "44229",
-      "stadt": "dortmund",
-      "email": "l.ha@gmail.com",
-      "id": 1
-    },
-    {
       "vorname": "",
       "nachname": "",
       "straße": "",
       "PLZ": "",
-      "email": "",
-      "id": 2
+      "stadt": "",
+      "email": ""
     },
     {
       "vorname": "Laura",
       "nachname": "Hohlsiepe",
-      "straße": "Galoppstraße 99",
-      "PLZ": "44229 ",
-      "stadt": "Dortmund",
-      "email": "l.hohlsiepe@gmail.com",
-      "id": 3
-    },
-    {
-      "vorname": "Patricia",
-      "nachname": "H",
-      "straße": "Galoppstraße 99",
+      "straße": "Galoppstraße",
       "PLZ": "44229",
       "stadt": "Dortmund",
-      "email": "p.hohlsiepe@gmail.com",
-      "id": 4
+      "email": "l.hohlsiepe@",
+      "id": 1
     }
   ]
 }
