@@ -51,7 +51,9 @@
         v-model="itemEmail"
       />
       <div class="flex">
-        <button class="bg-red-300 p-2 m-1">Löschen</button>
+        <button class="bg-red-300 p-2 m-1" @click="deleteItem()">
+          Löschen
+        </button>
         <button class="bg-green-300 p-2 m-1" @click="addItem()">
           Speichern
         </button>
@@ -192,6 +194,11 @@ export default {
       this.itemPlz = "";
       this.itemStadt = "";
       this.email = "";
+    },
+
+    async deleteItem() {
+      axios.delete("http://localhost:3000/items");
+      this.items = "";
     },
   },
   mounted() {
