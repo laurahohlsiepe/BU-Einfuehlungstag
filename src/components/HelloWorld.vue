@@ -51,7 +51,13 @@
         v-model="itemEmail"
       />
       <div class="flex">
-        <button class="bg-red-300 p-2 m-1" @click="deleteItem()">
+        <button
+          class="bg-red-300 p-2 m-1"
+          @click="
+            resetInput();
+            clearItems();
+          "
+        >
           Löschen
         </button>
         <button class="bg-green-300 p-2 m-1" @click="addItem()">
@@ -112,6 +118,7 @@ export default {
       itemVorname: "",
       itemNachname: "",
       itemStraße: "",
+      itemStadt: "",
       itemPlz: "",
       itemEmail: "",
     };
@@ -196,10 +203,25 @@ export default {
       this.email = "";
     },
 
-    async deleteItem() {
-      axios.delete("http://localhost:3000/items");
+    resetInput() {
+      this.itemVorname = "";
+      this.itemNachname = "";
+      this.itemStraße = "";
+      this.itemPlz = "";
+      this.itemStadt = "";
+      this.email = "";
+    },
+
+    clearItems() {
       this.items = "";
     },
+    /*
+    async deleteItem(id) {
+      await axios.delete("http://localhost:3000/items/${id}");
+
+      this.items = this.items.filter((item) => item.id !== id);
+    },
+*/
   },
   mounted() {
     this.loadData();
@@ -207,6 +229,7 @@ export default {
     this.loadDate();
     this.loadCountry();
     this.loadPartVaccines();
+    this.resetInput();
   },
 };
 </script>
