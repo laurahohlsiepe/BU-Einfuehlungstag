@@ -50,9 +50,9 @@
         placeholder="E-Mail-Adresse"
         v-model="itemEmail"
       />
-      <div class="flex">
+      <div class="flex pt-3">
         <button
-          class="bg-red-300 p-2 m-1"
+          class="bg-red-300 p-2 m-1 rounded shadow-lg"
           @click="
             resetInput();
             clearItems();
@@ -60,14 +60,19 @@
         >
           Löschen
         </button>
-        <button class="bg-green-300 p-2 m-1" @click="addItem()">
+        <button
+          class="bg-green-300 p-2 m-1 rounded shadow-lg"
+          @click="addItem()"
+        >
           Speichern
         </button>
       </div>
     </div>
 
     <div class="flex flex-col">
-      <p class="text-center m-5">{{ cases.country }} am {{ updated }}</p>
+      <p class="text-center mt-12 text-xl">
+        {{ cases.country }} am {{ updated }}
+      </p>
 
       <div class="border-2 m-12">
         <table class="table-fixed w-full text-center">
@@ -86,9 +91,9 @@
           </thead>
           <tbody>
             <tr>
-              <td class="py-8 text-lg">{{ cases.confirmed }}</td>
-              <td class="py-8 text-lg">{{ vaccines.people_vaccinated }}</td>
-              <td class="py-8 text-lg">
+              <td class="py-8 text-xl">{{ cases.confirmed }}</td>
+              <td class="py-8 text-xl">{{ vaccines.people_vaccinated }}</td>
+              <td class="py-8 text-xl">
                 {{ vaccines.people_partially_vaccinated }}
               </td>
             </tr>
