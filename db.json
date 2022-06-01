@@ -1,5 +1,22 @@
 {
-  "posts": [{ "id": 1, "title": "json-server", "author": "typicode" }],
-  "comments": [{ "id": 1, "body": "some comment", "postId": 1 }],
-  "profile": { "name": "typicode" }
+  "items": [
+    {
+      "id": 0,
+      "vorname": "Laura",
+      "nachname": "Ha",
+      "straße": "Hochstraße 100",
+      "PLZ": "44229",
+      "stadt": "Dortmund",
+      "email": "laurah@gmail.com"
+    },
+    {
+      "vorname": "laura",
+      "nachname": "ha",
+      "straße": "galoppstraße99",
+      "PLZ": "44229",
+      "stadt": "dortmund",
+      "email": "l.ha@gmail.com",
+      "id": 1
+    }
+  ]
 }

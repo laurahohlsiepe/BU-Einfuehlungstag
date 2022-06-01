@@ -4,44 +4,60 @@
 
     <div class="flex flex-col items-center m-4">
       <h2 class="text-center">Dein Benutzer</h2>
-      <p class="text-center">Anzeige voller Name</p>
-      <p class="text-center">Anzeige Email-Adresse</p>
-      <p class="text-center">Anzeige volle Adresse</p>
+
+      <p class="text-center" v-for="item of items" :key="item.id">
+        {{ item.vorname + " " + item.nachname }}
+      </p>
+      <p class="text-center" v-for="item of items" :key="item.id">
+        {{ item.straße + " " + item.PLZ + " " + item.stadt }}
+      </p>
+      <p class="text-center" v-for="item of items" :key="item.id">
+        {{ item.email }}
+      </p>
       <input
         class="shadow appearance-none border border-gray-300 rounded-lg focus:ring-blue-500/50 p-1.5 w-1/4 my-1.5"
         type="text"
         placeholder="Vorname"
+        v-model="itemVorname"
       />
       <input
         class="shadow appearance-none border border-gray-300 rounded-lg focus:ring-blue-500/50 p-1.5 w-1/4 my-1.5"
         type="text"
         placeholder="Nachname"
+        v-model="itemNachname"
       />
       <input
         class="shadow appearance-none border border-gray-300 rounded-lg focus:ring-blue-500/50 p-1.5 w-1/4 my-1.5"
         type="text"
         placeholder="Straße"
+        v-model="itemStraße"
       />
       <input
         class="shadow appearance-none border border-gray-300 rounded-lg focus:ring-blue-500/50 p-1.5 w-1/4 my-1.5"
         type="text"
         placeholder="PLZ"
+        v-model="itemPlz"
       />
       <input
         class="shadow appearance-none border border-gray-300 rounded-lg focus:ring-blue-500/50 p-1.5 w-1/4 my-1.5"
         type="text"
         placeholder="Stadt"
+        v-model="itemStadt"
       />
       <input
         class="shadow appearance-none border border-gray-300 rounded-lg focus:ring-blue-500/50 p-1.5 w-1/4 my-1.5"
         type="text"
         placeholder="E-Mail-Adresse"
+        v-model="itemEmail"
       />
       <div class="flex">
         <button class="bg-red-300 p-2 m-1">Löschen</button>
-        <button class="bg-green-300 p-2 m-1">Speichern</button>
+        <button class="bg-green-300 p-2 m-1" @click="addItem()">
+          Speichern
+        </button>
       </div>
     </div>
+
     <div class="flex flex-col">
       <p class="text-center m-5">{{ cases.country }} am {{ updated }}</p>
 
@@ -77,6 +93,7 @@
 
 <script>
 import "@/assets/style.css";
+import axios from "axios";
 
 export default {
   name: "HelloWorld",
@@ -89,11 +106,27 @@ export default {
       cases: {},
       vaccines: {},
       updated: {},
+      items: [],
+      itemVorname: "",
+      itemNachname: "",
+      itemStraße: "",
+      itemPlz: "",
+      itemEmail: "",
     };
   },
+
+  async created() {
+    try {
+      const res = await axios.get(`http://localhost:3000/items`);
+      this.items = res.data;
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
   methods: {
     loadData() {
-      /* console.log("data"); */
+      /* console.log("data.Germany.All"); */
       fetch("https://covid-api.mmediagroup.fr/v1/cases")
         .then((response) => {
           return response.json();
@@ -120,7 +153,6 @@ export default {
         })
         .then((data) => {
           this.vaccines = data.Germany.All;
-          console.log(data.Germany.All);
         });
     },
 
@@ -142,6 +174,24 @@ export default {
         .then((data) => {
           this.updated = data.Germany.Unknown.updated;
         });
+    },
+
+    async addItem() {
+      const res = await axios.post("http://localhost:3000/items", {
+        vorname: this.itemVorname,
+        nachname: this.itemNachname,
+        straße: this.itemStraße,
+        PLZ: this.itemPlz,
+        stadt: this.itemStadt,
+        email: this.itemEmail,
+      });
+      this.items = [...this.items, res.data];
+      this.itemVorname = "";
+      this.itemNachname = "";
+      this.itemStraße = "";
+      this.itemPlz = "";
+      this.itemStadt = "";
+      this.email = "";
     },
   },
   mounted() {
