@@ -49,6 +49,7 @@
         type="text"
         placeholder="E-Mail-Adresse"
         v-model="itemEmail"
+        @change="checkEmail()"
       />
       <div class="flex pt-3">
         <button
@@ -67,6 +68,10 @@
           Speichern
         </button>
       </div>
+    </div>
+
+    <div>
+      <p class="text-red-500 text-center">{{ mailMessage }}</p>
     </div>
 
     <div class="flex flex-col">
@@ -107,6 +112,11 @@
 <script>
 import "@/assets/style.css";
 import axios from "axios";
+/*
+import Vue from "vue";
+import VueFormulate from "@braid/vue-formulate";
+
+Vue.use(VueFormulate); */
 
 export default {
   name: "HelloWorld",
@@ -126,6 +136,7 @@ export default {
       itemStadt: "",
       itemPlz: "",
       itemEmail: "",
+      errors: [],
     };
   },
 
@@ -140,7 +151,6 @@ export default {
 
   methods: {
     loadData() {
-      /* console.log("data.Germany.All"); */
       fetch("https://covid-api.mmediagroup.fr/v1/cases")
         .then((response) => {
           return response.json();
@@ -220,6 +230,17 @@ export default {
     clearItems() {
       this.items = "";
     },
+
+    checkEmail() {
+      var re =
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      if (re.test(this.itemEmail) === false) {
+        this.mailMessage = "Die Email-Adresse ist nicht gültig.";
+      } else {
+        this.mailMessage = " ";
+      }
+    },
+
     /*
     async deleteItem(id) {
       await axios.delete("http://localhost:3000/items/${id}");
@@ -228,6 +249,7 @@ export default {
     },
 */
   },
+
   mounted() {
     this.loadData();
     this.loadVaccines();
