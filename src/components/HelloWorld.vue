@@ -3,7 +3,7 @@
     <h1 class="text-4xl font-bold text-center m-7">Corona-Dashboard</h1>
 
     <div class="flex flex-col items-center m-4">
-      <h2 class="text-center">Dein Benutzer</h2>
+      <h2 class="text-center font-bold mb-3">Dein Benutzer</h2>
 
       <p class="text-center" v-for="item of items" :key="item.id">
         {{ item.vorname + " " + item.nachname }}
