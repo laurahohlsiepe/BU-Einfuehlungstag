@@ -57,13 +57,17 @@
           @click="
             resetInput();
             clearItems();
+            deleteItem(id);
           "
         >
           Löschen
         </button>
         <button
           class="bg-green-300 p-2 m-1 rounded shadow-lg"
-          @click="addItem()"
+          @click="
+            /* addItem(); */
+            updateItem()
+          "
         >
           Speichern
         </button>
@@ -215,7 +219,7 @@ export default {
       this.itemStraße = "";
       this.itemPlz = "";
       this.itemStadt = "";
-      this.email = "";
+      this.itemEmail = "";
     },
 
     resetInput() {
@@ -241,13 +245,31 @@ export default {
       }
     },
 
-    /*
-    async deleteItem(id) {
-      await axios.delete("http://localhost:3000/items/${id}");
+    async deleteItem() {
+      await axios.delete(
+        "http://localhost:3000/items"
 
-      this.items = this.items.filter((item) => item.id !== id);
+        /*  this.items = this.items.filter((item) => item.id !== id); */
+      );
     },
-*/
+
+    async updateItem() {
+      const res = await axios.patch("http://localhost:3000/items/0", {
+        vorname: this.itemVorname,
+        nachname: this.itemNachname,
+        straße: this.itemStraße,
+        PLZ: this.itemPlz,
+        stadt: this.itemStadt,
+        email: this.itemEmail,
+      });
+      this.items = [...this.items, res.data];
+      this.itemVorname = "";
+      this.itemNachname = "";
+      this.itemStraße = "";
+      this.itemPlz = "";
+      this.itemStadt = "";
+      this.itemEmail = "";
+    },
   },
 
   mounted() {
